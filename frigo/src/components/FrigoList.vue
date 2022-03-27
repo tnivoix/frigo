@@ -104,4 +104,11 @@ function deleteItem(id) {
 </script>
 
 <style>
+#frigoList {
+  width: calc(2400px / 3);
+  height: calc(4600px / 3);
+  background-image: url('@/images/ouvert.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+}
 </style>
