@@ -1,0 +1,206 @@
+:root {
+    --frigo-width: 2000px;
+    --frigo-height: 1500px;
+    --rapport: 2;
+}
+
+#app {
+    width: fit-content;
+    height: fit-content;
+    margin: auto;
+    padding: 10px;
+}
+
+body {
+    background-image: url("@/images/soleil.gif");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#frigoFerme {
+    width: calc(var(--frigo-width) / var(--rapport));
+    height: calc(var(--frigo-height) / var(--rapport));
+    background-image: url('@/images/ferme.png'), linear-gradient(rgb(255, 255, 0, 0.7), rgba(255, 0, 0, 0.7));
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+#frigoOuvert {
+    width: calc(var(--frigo-width) / var(--rapport));
+    height: calc(var(--frigo-height) / var(--rapport));
+    background-image: url('@/images/ouvert.png'), linear-gradient(rgb(255, 255, 0, 0.7), rgba(255, 0, 0, 0.7));
+    background-repeat: no-repeat;
+    background-size: contain;
+    padding: calc(30px / var(--rapport));
+    overflow: auto;
+}
+
+#frigoOuvert::-webkit-scrollbar {
+    width: 10px;
+    background-color: gold;
+}
+
+#frigoOuvert::-webkit-scrollbar-thumb {
+    background-color: rgb(255, 136, 0);
+}
+
+h1 {
+    text-align: center;
+    animation: color-change 2s infinite;
+    font-size: 50px;
+    font-weight: bold;
+    background: linear-gradient(rgba(255, 0, 0, 0.7), rgba(255, 255, 0, 0.7));
+    border-radius: 40% 40% 0% 0% / 100% 100% 0% 0%;
+}
+
+h2 {
+    text-align: center;
+    width: 400px;
+    color: rgb(173, 9, 9);
+    font-weight: 500;
+}
+
+form {
+    text-align: center;
+}
+
+.formValues {
+    display: flex;
+    justify-content: space-around;
+}
+
+input[type=text] {
+    width: 150px;
+    color: darkred;
+    border: solid 1px darkred;
+}
+
+input[type=number] {
+    width: 50px;
+    color: darkred;
+    border: solid 1px darkred;
+}
+
+input[type=submit] {
+    width: 80px;
+    color: darkred;
+    font-weight: bold;
+    background: radial-gradient(rgb(255, 255, 0, 0.8) 40%, rgb(255, 0, 0, 0.8));
+    border-radius: 15% / 50%;
+    border: transparent;
+}
+
+input[type=submit]:hover {
+    background: radial-gradient(rgb(255, 0, 0, 0.8) 1%, rgb(255, 255, 0, 0.8));
+}
+
+#bottom {
+    height: 80px;
+    background: linear-gradient(rgba(255, 0, 0, 0.7), rgb(255, 255, 0, 0.7));
+    border-radius: 0% 0% 40% 40% / 0% 0% 100% 100%;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+#btnOuvrirFermer {
+    width: 70px;
+    height: 70px;
+    margin-top: 5px;
+    color: darkred;
+    font-weight: 1000;
+    border: 4px solid darkred;
+    border-radius: 100%;
+    background: radial-gradient(rgb(255, 255, 0, 0.8) 10%, rgb(255, 0, 0, 0.8));
+}
+
+#btnOuvrirFermer:hover {
+    color: gold;
+    border: 4px solid gold;
+    background: radial-gradient(rgb(255, 0, 0, 0.8) 1%, rgb(255, 255, 0, 0.8));
+}
+
+#deleteAll {
+    width: 100px;
+    height: 70px;
+    margin-top: 5px;
+    color: black;
+    font-weight: 1000;
+    border: 4px solid black;
+    border-radius: 20%;
+    background: radial-gradient(rgb(255, 255, 255, 0.8) 1%, rgb(0, 0, 0, 0.8));
+}
+
+#deleteAll:hover {
+    float: right;
+    color: white;
+    border: 4px solid white;
+    background: radial-gradient(rgb(0, 0, 0, 0.8) 30%, rgb(255, 255, 255, 0.8));
+}
+
+#top {
+    margin: auto;
+    height: 110px;
+    display: flex;
+    justify-content: space-around;
+    padding-bottom: 20px;
+    background-color: rgba(255, 255, 0, 0.7);
+}
+
+#frigoMarket,
+#frigoSearch {
+    position: relative;
+    display: inline-block;
+    margin: auto;
+    justify-content: center;
+    border: 5px solid rgb(173, 9, 9);
+}
+
+
+/*
+#test {
+    width: 400px;
+    height: 300px;
+    background-image: url("@/images/warning.gif");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+*/
+
+@keyframes color-change {
+    0% {
+        color: rgb(255, 255, 0);
+    }
+    15% {
+        color: rgb(255, 192, 0);
+    }
+    30% {
+        color: rgb(255, 128, 0);
+    }
+    45% {
+        color: rgb(255, 64, 0);
+    }
+    60% {
+        color: rgb(255, 0, 0);
+    }
+    75% {
+        color: rgb(255, 64, 0);
+    }
+    90% {
+        color: rgb(255, 128, 0);
+    }
+    100% {
+        color: rgb(255, 192, 0);
+    }
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}

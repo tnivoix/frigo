@@ -1,36 +1,44 @@
 <template>
-  <div id="frigoMarget">
+  <div id="frigoMarket">
     <h2>Ajouter un aliment dans le frigo</h2>
-    <form @submit.prevent="$emit('eventAdd', name, nb); clear()">
-      <input
-        type="text"
-        class="input"
-        required
-        v-model="name"
-        placeholder="Aliment"
-      />
-      <input type="number" class="input" required v-model="nb" />
-      <input type="submit" value="Add" />
+    <form hidden
+      @submit.prevent="
+        $emit('eventAdd', name, nb);
+        clear();
+      "
+    >
+      <div class="formValues">
+        <input
+          type="text"
+          class="input"
+          required
+          v-model="name"
+          placeholder="Aliment"
+        />
+        <input type="number" class="input" required v-model="nb" />
+      </div>
+      <input type="submit" value="Ajouter" />
     </form>
   </div>
 </template>
 
 <script setup>
-//defineEmits(["eventAdd"]);
+import { reactive, ref } from "@vue/reactivity";
 
-let name = "";
-let nb = 1;
+defineEmits(["eventAdd"]);
+
+var name = ref("");
+var nb = ref(1);
 
 function clear() {
+  name.value="";
+  nb.value=1;
   for (let i of document.getElementsByClassName("input")) {
     if (i.type == "text") {
       i.value = "";
     } else if (i.type == "number") {
-      i.valueAsNumber = "1";
+      i.value = "1";
     }
   }
 }
 </script>
-
-<style>
-</style>

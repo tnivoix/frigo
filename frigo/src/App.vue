@@ -1,23 +1,13 @@
 <script setup>
-import FrigoList from "@/components/FrigoList.vue";
+import Frigo from "@/components/Frigo.vue";
 </script>
 
 <template>
-  <div id="app">
-    <frigo-list />
-  </div>
+  <frigo />
 </template>
 
 <style>
 @import "./assets/base.css";
-
-#app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-
-  font-weight: normal;
-}
-
-
+@import "./assets/frigoItem.css";
+@import "./assets/frigo.css";
 </style>

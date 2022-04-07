@@ -1,0 +1,54 @@
+.frigoItem {
+    width: 120px;
+    height: 142px;
+    position: relative;
+    display: inline-block;
+    padding: 5px;
+}
+
+.itemImg {
+    position: relative;
+    width: 110px;
+    height: 110px;
+}
+
+.itemImg>img {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 100%;
+}
+
+.itemInfo {
+    position: relative;
+    width: fit-content;
+    height: 22px;
+    margin: auto;
+    align-content: center;
+    background-color: rgba(255, 215, 0, 0.6);
+    border-radius: 15% /50%;
+}
+
+.itemInfo>button {
+    display: inline-block;
+    height: 22px;
+    width: 22px;
+    padding: 0;
+    vertical-align: top;
+    border-color: rgb(255, 167, 3);
+    background-color: rgb(255, 230, 0);
+    border-radius: 50%;
+}
+
+.itemInfo>button:hover {
+    box-shadow: 1px 1px 5px black;
+}
+
+.itemInfo>a {
+    display: inline-block;
+    height: 22px;
+    width: 22px;
+    text-align: center;
+    color: red;
+    font-weight: 700;
+}

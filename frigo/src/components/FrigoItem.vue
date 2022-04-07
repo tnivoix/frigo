@@ -1,84 +1,37 @@
 <template>
   <div class="frigoItem">
     <div class="itemImg">
-      <img src="@/images/noImage.png" alt="" />
+      <img src="@/images/noImage.png" :alt="item.name" :title="item.name" :id="item.id" @dblclick="$emit('eventDelete', item.id)"/>
     </div>
     <div class="itemInfo">
-      <div class="itemText">
-        <p>{{ item.name }}</p>
-      </div>
-      <div class="itemBtns">
         <button @click="$emit('eventModify', item, -1)">-</button>
         <a>{{ item.nb }}</a>
         <button @click="$emit('eventModify', item, 1)">+</button>
-      </div>
+      
     </div>
   </div>
 </template>
 
 <script setup>
-defineProps(["item"]);
-defineEmits(["eventModify"]);
+import { onMounted } from "vue";
+const props = defineProps(["item"]);
+defineEmits(["eventModify", "eventDelete"]);
+
+const apiImage = "https://pixabay.com/api/?key=26221263-9caba9f62ea7f5c4e162512a9&lang=fr&image_type=photo&category=food&per_page=10&q=";
+
+onMounted(() => {
+  loadImage();
+  const test = props.item.name.normalize("NFD").replaceAll(/[\u0300-\u036f]/g, "").replaceAll(" ", "+");
+});
+
+function loadImage(){
+  fetch(apiImage+props.item.name.normalize("NFD").replaceAll(/[\u0300-\u036f]/g, "").replaceAll(" ", "+"))
+    .then((response) => {
+      return response.json();
+    })
+    .then((dataJSON) => {
+      document.getElementById(props.item.id).src = dataJSON.hits[0].previewURL;
+    })
+    .catch((error) => console.log(error));
+}
 </script>
-
-<style>
-.frigoItem {
-  width: 150px;
-  height: 200px;
-  position: relative;
-  display: inline-block;
-}
-
-.itemImg {
-  position: relative;
-  width: 100%;
-  height: 75%;
-}
-
-.itemImg > img {
-  position: relative;
-  width: 100%;
-  height: 100%;
-}
-
-.itemInfo {
-  position: relative;
-  width: 100%;
-  height: 25%;
-  align-content: center;
-}
-
-.itemText {
-  width: fit-content;
-  margin: auto;
-  height: 50%;
-}
-
-.itemText > p {
-  margin: auto;
-  padding-top: 3.5px;
-}
-
-.itemBtns {
-  width: fit-content;
-  height: 50%;
-  margin: auto;
-}
-
-.itemBtns > button {
-  display: inline-block;
-  margin: auto;
-  height: 25px;
-  width: 25px;
-  vertical-align: middle;
-}
-
-.itemBtns > a {
-  display: inline-block;
-  margin: auto;
-  height: auto;
-  width: 25px;
-  text-align: center;
-  vertical-align: middle;
-}
-</style>
