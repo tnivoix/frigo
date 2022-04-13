@@ -155,16 +155,62 @@ input[type=submit]:hover {
     border: 5px solid rgb(173, 9, 9);
 }
 
-
-/*
-#test {
-    width: 400px;
-    height: 300px;
-    background-image: url("@/images/warning.gif");
-    background-repeat: no-repeat;
-    background-size: cover;
+#popup {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
 }
-*/
+
+#popupContent {
+    top: 250px;
+    margin: auto;
+    padding: 30px 50px;
+    width: fit-content;
+    text-align: center;
+    border: 10px solid;
+    border-radius: 30%;
+    animation: warningBorder 1.5s infinite, warningBackground 1.5s infinite;
+}
+
+#popupContent>p {
+    animation: warningText 1.5s infinite;
+    font-size: xx-large;
+    font-weight: 1000;
+}
+
+#popupContent>img {
+    padding: 10px 0px;
+}
+
+#popupButtons {
+    height: 35px;
+    display: flex;
+    align-content: space-between;
+    margin: auto;
+}
+
+#popupButtons>div {
+    width: 120px;
+    height: 40px;
+    position: relative;
+    display: inline-block;
+    margin: auto;
+}
+
+#popupButtons button {
+    width: 105px;
+    height: 30px;
+    background-color: black;
+    border: solid 5px;
+    animation: warningBorder 1.5s infinite, warningTextReversed 1.5s infinite;
+}
+
+#popupButtons button:hover {
+    width: 120px;
+    height: 40px;
+}
 
 @keyframes color-change {
     0% {
@@ -202,5 +248,65 @@ input[type=submit]:hover {
     }
     100% {
         background-position: 0% 50%;
+    }
+}
+
+@keyframes warningText {
+    0% {
+        color: white;
+    }
+    49% {
+        color: white;
+    }
+    51% {
+        color: red;
+    }
+    100% {
+        color: red;
+    }
+}
+
+@keyframes warningTextReversed {
+    0% {
+        color: red;
+    }
+    49% {
+        color: red;
+    }
+    51% {
+        color: white;
+    }
+    100% {
+        color: white;
+    }
+}
+
+@keyframes warningBackground {
+    0% {
+        background-color: red;
+    }
+    49% {
+        background-color: red;
+    }
+    51% {
+        background-color: white;
+    }
+    100% {
+        background-color: white;
+    }
+}
+
+@keyframes warningBorder {
+    0% {
+        border-color: white;
+    }
+    49% {
+        border-color: white;
+    }
+    51% {
+        border-color: red;
+    }
+    100% {
+        border-color: red;
     }
 }

@@ -1,7 +1,7 @@
 <template>
   <div class="frigoItem">
     <div class="itemImg">
-      <img src="@/images/noImage.png" :alt="item.name" :title="item.name" :id="item.id" @dblclick="$emit('eventDelete', item.id)"/>
+      <img src="@/images/noImage.png" :alt="item.name" :title="item.name" :id="item.id" @dblclick="$emit('eventDelete', item.id, false)"/>
     </div>
     <div class="itemInfo">
         <button @click="$emit('eventModify', item, -1)">-</button>

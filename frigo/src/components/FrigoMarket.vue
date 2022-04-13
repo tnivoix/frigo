@@ -15,7 +15,7 @@
           v-model="name"
           placeholder="Aliment"
         />
-        <input type="number" class="input" required v-model="nb" />
+        <input type="number" min="0" class="input" required v-model="nb" />
       </div>
       <input type="submit" value="Ajouter" />
     </form>
