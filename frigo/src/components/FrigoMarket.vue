@@ -30,6 +30,7 @@ defineEmits(["eventAdd"]);
 var name = ref("");
 var nb = ref(1);
 
+// Reset le formulaire d'ajout : texte vide et quantité à 1
 function clear() {
   name.value="";
   nb.value=1;

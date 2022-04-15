@@ -27,9 +27,3 @@ npm run dev
 ```sh
 npm run build
 ```
-
-### Idées
-
-Utiliser l'API de la banque d'images pour télécharger les nouvelles images.
-Nommer les images par le nom de la recherche sans accents et sans caractères spéciaux.
-Proposer les aliments déjà téléchargés sinon télécharger une nouvelle images.

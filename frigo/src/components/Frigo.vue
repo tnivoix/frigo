@@ -14,6 +14,7 @@
       <button id="btnOuvrirFermer">Ouvrir</button>
       <button id="deleteAll" hidden>Vider le frigo actuel</button>
     </div>
+    <!-- Popup affiché quand on veut vider le frigo -->
     <div id="popup" hidden>
       <div id="popupContent">
         <p>WARNING</p>
@@ -99,6 +100,7 @@ onMounted(() => {
 });
 
 function getList() {
+  // Récupération de tout le frigo
   fetch(url)
     .then((response) => {
       return response.json();
@@ -110,6 +112,7 @@ function getList() {
 }
 
 function printFrigo(items) {
+  // MAJ de la liste avec les items donnés
   listItem.splice(0, listItem.length);
   for (let i of items) {
     listItem.push(new Item(i.id, i.nom, i.qte));
@@ -117,6 +120,7 @@ function printFrigo(items) {
 }
 
 function handlerModify(item, nb) {
+  // Modification de l'item en local
   item.modify(nb);
   if (item.nb > 0) {
     modifyItem(item)
@@ -143,9 +147,11 @@ function handlerAdd(name, nb) {
       headers: myHeaders,
       body: JSON.stringify({ nom: name, qte: nb }),
     };
+    // Ajout de l'item
     fetch(url, fetchOptions)
       .then(
         setTimeout(function () {
+          // On reste sur la recherche effectuée
           handlerSearch(document.getElementById("searchValue").value);
         }, 150)
       )
@@ -165,6 +171,7 @@ function handlerSearch(search) {
 }
 
 function modifyItem(item) {
+  // Modification de l'item dans l'API
   let myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
   const fetchOptions = {
@@ -175,6 +182,7 @@ function modifyItem(item) {
   fetch(url, fetchOptions)
     .then(
       setTimeout(function () {
+        // On reste sur la recherche effectuée
         handlerSearch(document.getElementById("searchValue").value);
       }, 150)
     )
@@ -191,17 +199,29 @@ function handlerDelete(id, all) {
     method: "DELETE",
   };
   fetch(url + "/" + id, fetchOptions)
-    .then(
-      setTimeout(function () {
-        handlerSearch(document.getElementById("searchValue").value);
-        deleteAudio.play();
-      }, 4000)
+    .then(() => {
+      if (all) {
+        setTimeout(function () {
+          // On reste sur la recherche effectuée
+          handlerSearch(document.getElementById("searchValue").value);
+        }, 4000)
+        // On attend la fin de l'effet sonore avant d'actualiser la liste
+      }else {
+        setTimeout(function () {
+          // On reste sur la recherche effectuée
+          handlerSearch(document.getElementById("searchValue").value);
+        }, 150)
+      }
+    }
+      
     )
     .catch((error) => console.log(error));
 }
 
 function popup() {
+  // On affiche le popup de confirmation s'il y a des choses à supprimer
   if (listItem.length > 0) {
+    // Effet sonore aléatoire entre 2
     var random = Math.floor(Math.random() * 2);
     currentAudio = random == 1 ? warning1Audio : warning2Audio;
     currentAudio.addEventListener('ended', loop);
@@ -212,6 +232,7 @@ function popup() {
   }
 }
 
+// On supprime tous les items affichés actuellement dans le frigo
 function viderFrigo() {
   cancel();
   deleteAllAudio.play();
@@ -220,11 +241,13 @@ function viderFrigo() {
   });
 }
 
+// Fonction event listener pour jouer l'effet sonore en boucle
 function loop() {
   currentAudio.currentTime = 0;
   currentAudio.play();
 }
 
+// On enleve l'event listener qui fait boucler l'effet sonore et on enlève le popup
 function cancel() {
   currentAudio.removeEventListener('ended', loop);
   document.getElementById("popup").hidden = true;
